@@ -14,10 +14,10 @@ body {
   color: #fff;
   background: #0b1224;
   -webkit-font-smoothing: antialiased;
-  --card: rgba(8, 16, 34, 0.62);
-  --card-line: rgba(255, 255, 255, 0.10);
-  --row: rgba(255, 255, 255, 0.07);
-  --row-hover: rgba(255, 255, 255, 0.12);
+  --card: rgba(20, 24, 36, 0.34);
+  --card-line: rgba(255, 255, 255, 0.22);
+  --row: rgba(255, 255, 255, 0.10);
+  --row-hover: rgba(255, 255, 255, 0.16);
   --accent: #3b82f6;
   --accent-soft: rgba(59, 130, 246, 0.22);
   --light: rgba(226, 235, 250, 0.94);
@@ -29,6 +29,7 @@ body {
   --radius: 18px;
 }
 p { margin: 0; }
+.card, .top, .rail, .ticker { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); }
 button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; }
 button:disabled { opacity: 0.45; cursor: default; }
 a { color: inherit; text-decoration: none; }
@@ -42,8 +43,8 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .scene { position: relative; min-height: 100vh; isolation: isolate; }
 .backdrop { position: fixed; inset: 0; z-index: 0; overflow: hidden;
   background: linear-gradient(160deg, #1a2440, #0b1224 60%, #1b1a2c); }
-.backdrop video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(2px) saturate(1.05); transform: scale(1.03); }
-.backdrop .tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 12, 30, 0.35), rgba(6, 12, 30, 0.55)); }
+.backdrop video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.backdrop .tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 8, 18, 0.12), rgba(4, 8, 18, 0.30)); }
 
 /* ---------- shell: rail + content ---------- */
 .shell { position: relative; z-index: 1; display: grid; grid-template-columns: 76px 1fr; min-height: 100vh; }
@@ -51,16 +52,16 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 
 /* ---------- rail (dock) ---------- */
 .rail { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 22px 0 16px; z-index: 50;
-  background: rgba(4, 9, 22, 0.55); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-  border-right: 1px solid rgba(255, 255, 255, 0.06); position: sticky; top: 0; height: 100vh; }
+  background: rgba(20, 24, 36, 0.32); backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%);
+  border-right: 1px solid rgba(255, 255, 255, 0.16); position: sticky; top: 0; height: 100vh; }
 .railLogo { width: 46px; height: 46px; border-radius: 50%; margin-bottom: 18px; display: grid; place-items: center; overflow: hidden; flex: none;
   background: radial-gradient(circle at 40% 35%, #1b2d55, #070c1c 70%); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 18px rgba(59, 130, 246, 0.25); }
 .railLogo canvas { width: 100% !important; height: 100% !important; }
 .dock { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 6px 0; }
-.dock .dockBtn { width: 50px; height: 50px; border-radius: 15px; display: grid; place-items: center; color: rgba(255, 255, 255, 0.88); position: relative; flex: none;
+.dock .dockBtn { width: 50px; height: 50px; border-radius: 15px; display: grid; place-items: center; color: rgba(255, 255, 255, 0.92); position: relative; flex: none;
   transform-origin: left center; will-change: transform;
   transition: transform 0.14s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s, box-shadow 0.2s;
-  background: rgba(255, 255, 255, 0.06); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.05); }
+  background: rgba(255, 255, 255, 0.10); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.10); }
 .dock .dockBtn:hover { background: rgba(255, 255, 255, 0.13); }
 .dock .dockBtn.on { background: linear-gradient(180deg, #4f8ff8, #2f6fe0); color: #fff; box-shadow: 0 8px 20px rgba(47, 111, 224, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35); }
 .dock .dockBtn.water.on { background: rgba(59, 130, 246, 0.18); color: #4da3ff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(77, 163, 255, 0.35); }
@@ -95,7 +96,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .mono { font-variant-numeric: tabular-nums; }
 .controls { display: flex; align-items: center; gap: 12px; position: relative; }
 .listen { display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 12px 0 16px; border-radius: 999px;
-  background: rgba(8, 16, 34, 0.55); border: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  background: rgba(20, 24, 36, 0.34); border: 1px solid rgba(255, 255, 255, 0.22); backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
   font-size: 15px; color: rgba(255, 255, 255, 0.9); }
 .listen .bars { display: flex; align-items: center; gap: 3px; height: 18px; }
 .listen .bars i { width: 3px; height: 8px; border-radius: 2px; background: #4d9bff; }
@@ -107,7 +108,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .listen .mic { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: rgba(255, 255, 255, 0.08); transition: background 0.2s; }
 .listen .mic:hover, .listen.on .mic { background: var(--accent); }
 .round { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; color: #fff; position: relative;
-  background: rgba(8, 16, 34, 0.55); border: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: background 0.2s; }
+  background: rgba(20, 24, 36, 0.34); border: 1px solid rgba(255, 255, 255, 0.22); backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3); transition: background 0.2s; }
 .round:hover, .round.on { background: rgba(59, 130, 246, 0.35); }
 .round .badge { position: absolute; top: 9px; right: 11px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 2px #0b1224; }
 .pop { position: absolute; right: 0; top: 58px; z-index: 30; width: 300px; padding: 14px; border-radius: 18px;
@@ -188,10 +189,14 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 /* ---------- card ---------- */
 .card {
   position: relative; min-width: 0; display: flex; flex-direction: column; gap: 12px; padding: 16px 18px;
-  border-radius: var(--radius); background: var(--card); border: 1px solid var(--card-line);
-  backdrop-filter: blur(24px) saturate(140%); -webkit-backdrop-filter: blur(24px) saturate(140%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 14px 40px rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius); border: 1px solid var(--card-line);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.06) 40%, rgba(255, 255, 255, 0.03) 100%), var(--card);
+  backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.06), 0 12px 36px rgba(0, 0, 0, 0.22);
 }
+.card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(120% 60% at 0% 0%, rgba(255, 255, 255, 0.14), transparent 55%); }
+.card > * { position: relative; }
 .cardHead { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .cardHead h2 { margin: 0; font-size: 16px; font-weight: 600; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 10px; }
 .iconBox { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: rgba(255, 255, 255, 0.10); flex: none; }
@@ -231,10 +236,10 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .jHead { display: flex; align-items: center; gap: 14px; }
 .jName h2 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.2px; }
 .jName p { font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-top: 2px; }
-.jHead .status { margin-left: auto; padding: 7px 14px; border-radius: 999px; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.10); }
+.jHead .status { margin-left: auto; padding: 7px 14px; border-radius: 999px; background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(255, 255, 255, 0.16); }
 .thread { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1 1 0; min-height: 150px; padding-right: 4px; }
 .msg { padding: 12px 14px; border-radius: 16px; font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; max-width: 92%; }
-.msg.jarvis { align-self: flex-start; background: rgba(28, 52, 104, 0.75); border: 1px solid rgba(96, 150, 255, 0.25); border-top-left-radius: 6px; }
+.msg.jarvis { align-self: flex-start; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); border-top-left-radius: 6px; }
 .msg.you { align-self: flex-end; background: var(--accent); border-top-right-radius: 6px; }
 .msg.err { outline: 1px solid rgba(248, 113, 113, 0.7); }
 .update { align-self: flex-start; width: 92%; padding: 12px 14px; border-radius: 16px; background: var(--light); color: var(--light-text); display: flex; flex-direction: column; gap: 9px; }
@@ -245,7 +250,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .quick button { padding: 5px 11px; border-radius: 999px; font-size: 11.5px; font-weight: 500; color: rgba(255, 255, 255, 0.9);
   background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); transition: background 0.2s, transform 0.15s; }
 .quick button:hover { background: rgba(59, 130, 246, 0.35); transform: translateY(-1px); }
-.askBar { display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 6px 0 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); }
+.askBar { display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 6px 0 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.10); border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25); }
 .askBar .micBtn { color: rgba(255, 255, 255, 0.85); display: grid; place-items: center; }
 .askBar .micBtn.on { color: #4d9bff; }
 .askBar input { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; font-size: 14px; }
@@ -417,7 +422,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .spark { display: block; opacity: 0.95; }
 
 /* ---------- bottom status bar ---------- */
-.ticker { display: flex; align-items: center; height: 46px; padding: 0; border-radius: 999px; background: var(--card); border: 1px solid var(--card-line);
+.ticker { display: flex; align-items: center; height: 46px; padding: 0; border-radius: 999px; background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)), var(--card); border: 1px solid var(--card-line); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); overflow: hidden; font-size: 13px; }
 .ticker .tItems { display: flex; align-items: center; width: max-content; gap: 10px; animation: ticker-lr 45s linear infinite; }
 .ticker:hover .tItems { animation-play-state: paused; }
