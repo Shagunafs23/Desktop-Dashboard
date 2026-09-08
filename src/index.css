@@ -128,12 +128,12 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .avatarBtn { font-weight: 600; font-size: 15px; }
 
 /* ---------- grid: left column + right grid ---------- */
-.grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 8fr) minmax(0, 16fr); align-items: start; }
+.grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 8fr) minmax(0, 16fr); align-items: stretch; }
 .colLeft { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-.colLeft #tile-chat { flex: 1; }
+.colLeft #tile-chat { flex: none; }
 /* mini Dribbble + Instagram pair under Jarvis */
-.miniRow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; flex: none; }
-.mgStage { display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; height: 118px; padding: 10px; border-radius: 10px; color: #fff;
+.miniRow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; flex: 1 1 auto; min-height: 0; align-items: stretch; }
+.mgStage { display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; flex: 1 1 auto; min-height: 118px; padding: 10px; border-radius: 10px; color: #fff;
   background: radial-gradient(120% 90% at 20% 10%, rgba(255, 122, 198, 0.9), transparent 55%), radial-gradient(100% 90% at 90% 90%, rgba(124, 92, 255, 0.95), transparent 60%), #1b1440;
   transition: transform 0.2s; }
 .mgStage:hover { transform: translateY(-2px); }
@@ -146,11 +146,11 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .miniRow .linkBtn { font-size: 0; width: 24px; height: 24px; border-radius: 50%; justify-content: center; background: rgba(255, 255, 255, 0.08); flex: none; }
 .miniRow .linkBtn svg { width: 13px; height: 13px; }
 .miniRow .cardHead { gap: 8px; }
-.miniRow .shotStage { flex: none; min-height: 0; height: 118px; border-radius: 10px; }
+.miniRow .shotStage { flex: 1 1 auto; min-height: 118px; height: auto; border-radius: 10px; }
 .miniRow .shotCap { padding: 16px 8px 6px; font-size: 11px; }
 .miniRow .shotCap i { width: 20px; height: 20px; }
 .miniRow .shotDots { display: none; }
-.miniRow .igFrame { flex: none; min-height: 0; height: 118px; border-radius: 10px; }
+.miniRow .igFrame { flex: 1 1 auto; min-height: 118px; height: auto; border-radius: 10px; }
 .colRight {
   display: grid; gap: 16px; min-width: 0;
   grid-template-columns: repeat(16, minmax(0, 1fr));
