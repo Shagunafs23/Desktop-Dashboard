@@ -163,6 +163,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .stackR { grid-column: 1 / 6; grid-row: 1 / 3; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .stackR #tile-list { flex: none; }
 #tile-play { flex: 1 1 auto; }
+#tile-cal { grid-area: y; gap: 10px; padding: 14px 16px; justify-content: center; }
 #tile-cal .calGrid { flex: 1 1 auto; align-content: space-evenly; gap: 2px; }
 #tile-cal .day { height: 26px; width: 28px; font-size: 12.5px; }
 #tile-cal .dow { font-size: 11.5px; }

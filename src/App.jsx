@@ -889,6 +889,7 @@ export default function App() {
               </div>
               <WeatherCard w={weather} />
               <DayPlanCard announce={announce} />
+              <CalendarCard outlook={outlook} />
               <div className="stackM">
                 <MarketsCard stocks={stocks} />
                 <GitHubLinkCard />
