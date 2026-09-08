@@ -347,7 +347,8 @@ function RemindersCard({ reminders, setReminders, outlook, water }) {
   const shown = open ? items : items.slice(0, 2);
   return (
     <section id="tile-list" className="card">
-      <div className="cardHead"><span className="iconBox"><Icon d={I.bell} /></span><h2>Reminders</h2><span className="count">{items.length}</span></div>
+      <div className="cardHead"><span className="iconBox"><Icon d={I.bell} /></span><h2>Reminders</h2><span className="count">{items.length}</span>
+        <button className="iconBtn" onClick={() => setOpen(!open)} title={open ? "Show less" : "View all reminders"}><Icon d={open ? I.up : I.arrow} size={15} /></button></div>
       <ul className="rows">
         {shown.length === 0 && <li className="muted small">Nothing pending.</li>}
         {shown.map((it) => (
@@ -368,7 +369,6 @@ function RemindersCard({ reminders, setReminders, outlook, water }) {
             <button className="btnAccent" disabled={!text.trim()}>Add</button>
           </div>
         </form>)}
-      <button className="viewAll" onClick={() => setOpen(!open)}>{open ? "Show less" : "View all reminders"}<Icon d={I.arrow} size={14} /></button>
     </section>
   );
 }

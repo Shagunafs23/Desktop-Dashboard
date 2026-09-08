@@ -161,6 +161,8 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 }
 #tile-list { grid-area: r; } #tile-weather { grid-area: w; } #tile-plan { grid-area: p; }
 #tile-list { gap: 10px; }
+.iconBtn { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: rgba(255, 255, 255, 0.10); flex: none; transition: background 0.2s; }
+.iconBtn:hover { background: var(--accent); }
 .stackR { grid-area: r; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .stackR #tile-list { flex: none; }
 #tile-cal { grid-area: c; gap: 6px; padding: 14px 16px; } #tile-play { grid-area: y; }
