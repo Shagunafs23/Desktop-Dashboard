@@ -878,8 +878,8 @@ export default function App() {
     setWaving(true);
     window.dispatchEvent(new Event("jarvis:refresh"));
     refreshOutlook(); loadReminders();
-    flash("thinking", 1400);
-    setTimeout(() => setWaving(false), 2200);
+    flash("thinking", 2200);
+    setTimeout(() => setWaving(false), 3400);
   }, [waving, refreshOutlook, loadReminders, flash]);
 
   return (

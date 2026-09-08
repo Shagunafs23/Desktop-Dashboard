@@ -459,18 +459,18 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .refreshFab:active { transform: scale(0.94); }
 .refreshFab svg { transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .refreshFab:hover svg { transform: rotate(90deg); }
-.refreshFab.busy svg { animation: spin 0.9s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+.refreshFab.busy svg { animation: spin 1.3s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
 .refreshFab::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.45); opacity: 0; pointer-events: none; }
-.refreshFab.busy::after { animation: fab-ring 1.1s ease-out infinite; }
+.refreshFab.busy::after { animation: fab-ring 1.5s ease-out infinite; }
 @keyframes fab-ring { 0% { transform: scale(0.8); opacity: 0.7; } 100% { transform: scale(1.6); opacity: 0; } }
 
-.grid.wave .card { animation: card-wave 1.1s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: calc(var(--i, 0) * 70ms); }
+.grid.wave .card { animation: card-wave 1.7s cubic-bezier(0.33, 0, 0.15, 1) both; animation-delay: calc(var(--i, 0) * 95ms); }
 @keyframes card-wave {
   0%   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-  28%  { opacity: 0.35; transform: translateY(10px) scale(0.975); filter: blur(5px); }
+  32%  { opacity: 0.4; transform: translateY(8px) scale(0.98); filter: blur(4px); }
   100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
-.grid.wave .card::before { animation: card-sheen 1.1s ease-out both; animation-delay: calc(var(--i, 0) * 70ms + 250ms); }
+.grid.wave .card::before { animation: card-sheen 1.7s ease-in-out both; animation-delay: calc(var(--i, 0) * 95ms + 380ms); }
 @keyframes card-sheen {
   0%   { background: radial-gradient(120% 60% at 0% 0%, rgba(255, 255, 255, 0.14), transparent 55%); }
   45%  { background: radial-gradient(120% 60% at 0% 0%, rgba(255, 255, 255, 0.14), transparent 55%), linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.28) 50%, transparent 70%); }
