@@ -1,5 +1,7 @@
 # Jarvis
 
+![Jarvis dashboard](docs/screenshot.jpg)
+
 Desk assistant dashboard: a glass card with the Jarvis orb, chat, Outlook mail and schedule,
 water reminders, a shared reminders list, and a notification centre.
 
