@@ -68,7 +68,7 @@ function LoopVideo({ src, className, onFail }) {
     const wake = () => tryPlay();
     document.addEventListener("pointerdown", wake); document.addEventListener("keydown", wake); document.addEventListener("visibilitychange", wake);
     const id = setInterval(tryPlay, 3000);
-    v.load(); tryPlay();
+    tryPlay();
     return () => { alive = false; clearInterval(id); events.forEach((e) => v.removeEventListener(e, tryPlay));
       document.removeEventListener("pointerdown", wake); document.removeEventListener("keydown", wake); document.removeEventListener("visibilitychange", wake); };
   }, [src]);
