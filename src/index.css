@@ -375,7 +375,8 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 
 /* ---------- instagram ---------- */
 .igFrame { position: relative; flex: 1; min-height: 160px; border-radius: 14px; overflow: hidden; background: #fff; }
-.igFrame iframe { position: absolute; left: 0; top: 0; border: 0; }
+.igFrame iframe { position: absolute; left: 0; top: 0; border: 0; pointer-events: none; }
+.igCover { position: absolute; inset: 0; z-index: 1; cursor: pointer; }
 
 /* ---------- youtube ---------- */
 #tile-play .ytBody { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr auto; gap: 8px; flex: 1 1 auto; min-height: 0; }

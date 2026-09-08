@@ -521,7 +521,8 @@ function InstagramCard() {
       <div className="cardHead"><span className="iconBox">{Logo.instagram}</span><h2>Instagram</h2>
         <a className="linkBtn" href={INSTA.url} target="_blank" rel="noopener noreferrer">View all <Icon d={I.arrow} /></a></div>
       <div className="igFrame" ref={box}>
-        <iframe src={`https://www.instagram.com/${INSTA.handle}/embed/`} title={"Instagram " + INSTA.handle} loading="lazy" style={{ width: 360, height: dim.h, transform: `scale(${dim.scale})`, transformOrigin: "0 0" }} />
+        <iframe src={`https://www.instagram.com/${INSTA.handle}/embed/`} title={"Instagram " + INSTA.handle} loading="lazy" sandbox="allow-scripts allow-same-origin" style={{ width: 360, height: dim.h, transform: `scale(${dim.scale})`, transformOrigin: "0 0" }} />
+        <a className="igCover" href={INSTA.url} target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile" />
       </div>
     </section>
   );
@@ -546,7 +547,7 @@ function YouTubeCard() {
       <div className="ytBody">
         <div className="player">
           {playing
-            ? <iframe src={`https://www.youtube.com/embed/${current.id}?rel=0&autoplay=1`} title={current.title} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen />
+            ? <iframe src={`https://www.youtube.com/embed/${current.id}?rel=0&autoplay=1`} title={current.title} allow="autoplay; encrypted-media; picture-in-picture" sandbox="allow-scripts allow-same-origin allow-presentation" allowFullScreen />
             : <button className="thumbPlay" onClick={() => setPlaying(true)} aria-label="Play">
                 <img src={`https://img.youtube.com/vi/${current.id}/hqdefault.jpg`} alt="" />
                 <span className="playGlass"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5v11l9-5.5z" fill="currentColor" /></svg></span>
