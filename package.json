@@ -1,0 +1,29 @@
+{
+  "name": "jarvis-orb",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "server": "node server.mjs",
+    "start": "concurrently -k -n api,web -c cyan,magenta \"node server.mjs\" \"vite --port 5210 --strictPort\""
+  },
+  "dependencies": {
+    "concurrently": "^10.0.5",
+    "express": "^5.2.1",
+    "imapflow": "^2.0.0",
+    "jarvis-ai-web-animation": "^0.1.2",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "oxlint": "^1.79.0",
+    "vite": "^8.2.2"
+  }
+}
