@@ -81,7 +81,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .railMenu button svg { width: 20px; height: 20px; }
 
 /* ---------- header ---------- */
-.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 18px; }
 .who { display: flex; align-items: center; gap: 16px; }
 .orbRing { border-radius: 50%; display: grid; place-items: center; overflow: hidden; flex: none;
   background: radial-gradient(circle at 45% 40%, #14264d, #050a18 72%);
@@ -91,7 +91,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .orbRing canvas { width: 100% !important; height: 100% !important; }
 .top h1 { margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.4px; line-height: 1.1; }
 .top h1 b { color: #4d9bff; font-weight: 600; }
-.top .date { margin-top: 12px; font-size: 15px; color: rgba(255, 255, 255, 0.82); display: flex; align-items: center; gap: 10px; }
+.top .date { margin-top: 5px; font-size: 15px; color: rgba(255, 255, 255, 0.82); display: flex; align-items: center; gap: 10px; }
 .top .date i { font-style: normal; opacity: 0.6; }
 .mono { font-variant-numeric: tabular-nums; }
 .controls { display: flex; align-items: center; gap: 12px; position: relative; }
