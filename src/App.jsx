@@ -885,11 +885,10 @@ export default function App() {
               <div className="stackR">
                 <RemindersCard reminders={reminders} setReminders={setReminders} outlook={outlook} water={water} />
                 <QuoteCard />
-                <CalendarCard outlook={outlook} />
+                <YouTubeCard />
               </div>
               <WeatherCard w={weather} />
               <DayPlanCard announce={announce} />
-              <YouTubeCard />
               <div className="stackM">
                 <MarketsCard stocks={stocks} />
                 <GitHubLinkCard />
