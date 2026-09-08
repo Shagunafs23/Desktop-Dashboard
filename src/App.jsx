@@ -176,7 +176,8 @@ function useGold() {
     const id = setInterval(load, 5 * 60e3);
     window.addEventListener("jarvis:refresh", load);
     return () => { alive = false; clearInterval(id); window.removeEventListener("jarvis:refresh", load); };
-  }, [setOpen, setFxOpen]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const ok = g && !g.error;
   return { g, goldPct: ok && open ? (g.g24 - open) / open * 100 : 0, fxPct: ok && fxOpen ? (g.inr - fxOpen) / fxOpen * 100 : 0 };
 }
