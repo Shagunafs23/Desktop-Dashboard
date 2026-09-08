@@ -154,7 +154,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
   grid-template-rows: auto auto;
   grid-template-areas:
     "r r r r r w w w w w p p p p p p"
-    "r r r r r m m m m m m m m m m m";
+    "r r r r r y y y y y m m m m m m";
 }
 #tile-list { grid-area: r; } #tile-weather { grid-area: w; } #tile-plan { grid-area: p; }
 #tile-list { gap: 10px; }
@@ -173,7 +173,6 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .quote { font-size: 12.5px; line-height: 1.4; font-style: italic; color: rgba(255, 255, 255, 0.92); }
 .quoteBy { font-size: 11px; color: var(--muted); }
 .stackM { grid-area: m; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.stackM #tile-stocks .stockScroll { height: auto; flex: 1 1 0; min-height: 111px; }
 .stackM #tile-stocks { flex: none; gap: 8px; }
 .card.ghLink { flex: 1 1 auto; min-height: 56px; flex-direction: row; align-items: center; gap: 12px; padding: 10px 14px; color: #fff; transition: background 0.2s, transform 0.2s; }
 .ghLink:hover { background: rgba(20, 32, 60, 0.75); transform: translateY(-1px); }
@@ -435,7 +434,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 /* ---------- responsive ---------- */
 @media (max-width: 1400px) {
   .grid { grid-template-columns: 1fr; }
-  .colRight { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; grid-template-areas: "r w" "r p" "m m"; }
+  .colRight { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; grid-template-areas: "r w" "r p" "y m"; }
   .stackR { grid-area: r; grid-column: auto; grid-row: auto; }
   .stackM { grid-area: m; }
   .listen { min-width: 0; }
