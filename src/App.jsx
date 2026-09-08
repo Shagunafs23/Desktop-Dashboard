@@ -116,7 +116,8 @@ function useWeather() {
     }
     load();
     const id = setInterval(load, 10 * 60e3);
-    return () => { alive = false; clearInterval(id); };
+    window.addEventListener("jarvis:refresh", load);
+    return () => { alive = false; clearInterval(id); window.removeEventListener("jarvis:refresh", load); };
   }, []);
   return w;
 }
@@ -173,7 +174,8 @@ function useGold() {
     }
     load();
     const id = setInterval(load, 5 * 60e3);
-    return () => { alive = false; clearInterval(id); };
+    window.addEventListener("jarvis:refresh", load);
+    return () => { alive = false; clearInterval(id); window.removeEventListener("jarvis:refresh", load); };
   }, [setOpen, setFxOpen]);
   const ok = g && !g.error;
   return { g, goldPct: ok && open ? (g.g24 - open) / open * 100 : 0, fxPct: ok && fxOpen ? (g.inr - fxOpen) / fxOpen * 100 : 0 };
@@ -186,7 +188,8 @@ function useStocks() {
     let alive = true;
     const load = () => api("/api/stocks").then((d) => alive && setS(d)).catch((e) => alive && setS((p) => (Array.isArray(p) ? p : { error: e.message })));
     load(); const id = setInterval(load, 60e3);
-    return () => { alive = false; clearInterval(id); };
+    window.addEventListener("jarvis:refresh", load);
+    return () => { alive = false; clearInterval(id); window.removeEventListener("jarvis:refresh", load); };
   }, []);
   return s;
 }
@@ -240,7 +243,8 @@ function useGmail(announce) {
     }
     load();
     const id = setInterval(load, 60e3);
-    return () => { alive = false; clearInterval(id); };
+    window.addEventListener("jarvis:refresh", load);
+    return () => { alive = false; clearInterval(id); window.removeEventListener("jarvis:refresh", load); };
   }, [announce]);
   return g;
 }
@@ -865,6 +869,18 @@ export default function App() {
   const [dictation, setDictation] = useState(null);
   const onDictation = useCallback((text) => setDictation({ text, id: Date.now() }), []);
 
+  // Refresh button: re-fetch every source and ripple a soft wave across the cards.
+  const [waving, setWaving] = useState(false);
+  const refreshAll = useCallback(() => {
+    if (waving) return;
+    document.querySelectorAll(".card").forEach((el, i) => el.style.setProperty("--i", i));
+    setWaving(true);
+    window.dispatchEvent(new Event("jarvis:refresh"));
+    refreshOutlook(); loadReminders();
+    flash("thinking", 1400);
+    setTimeout(() => setWaving(false), 2200);
+  }, [waving, refreshOutlook, loadReminders, flash]);
+
   return (
     <div className="scene">
       <Backdrop />
@@ -872,7 +888,7 @@ export default function App() {
         <Rail active={active} jump={jump} launch={launch} busyApp={busyApp} water={water} />
         <div className="content">
           <Header mood={mood} voice={voice} setVoice={setVoice} model={model} setModel={setModel} refreshOutlook={refreshOutlook} refreshing={refreshing} log={log} onDictation={onDictation} />
-          <main className="grid">
+          <main className={"grid " + (waving ? "wave" : "")}>
             <div className="colLeft">
               <JarvisCard mood={mood} setMood={setMood} flash={flash} model={model} voice={voice} onReminders={loadReminders} brief={brief} dictation={dictation} />
               <div className="miniRow">
@@ -898,6 +914,9 @@ export default function App() {
           </main>
           <Ticker weather={weather} gold={gold} stocks={stocks} />
         </div>
+        <button className={"refreshFab " + (waving ? "busy" : "")} onClick={refreshAll} title="Refresh everything" aria-label="Refresh everything">
+          <Icon d={I.refresh} size={22} sw={2} />
+        </button>
       </div>
     </div>
   );
