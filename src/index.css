@@ -147,10 +147,6 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .miniRow .linkBtn { font-size: 0; width: 24px; height: 24px; border-radius: 50%; justify-content: center; background: rgba(255, 255, 255, 0.08); flex: none; }
 .miniRow .linkBtn svg { width: 13px; height: 13px; }
 .miniRow .cardHead { gap: 8px; }
-.miniRow .shotStage { flex: 1 1 auto; min-height: 118px; height: auto; border-radius: 10px; }
-.miniRow .shotCap { padding: 16px 8px 6px; font-size: 11px; }
-.miniRow .shotCap i { width: 20px; height: 20px; }
-.miniRow .shotDots { display: none; }
 .miniRow .igFrame { flex: 1 1 auto; min-height: 118px; height: auto; border-radius: 10px; }
 .colRight {
   display: grid; gap: 16px; min-width: 0;
@@ -331,18 +327,15 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .plan .row svg { width: 18px; height: 18px; }
 .plan .row .chk { color: rgba(255, 255, 255, 0.9); }
 
-/* ---------- dribbble ---------- */
-.shotStage { position: relative; display: block; flex: 1; min-height: 150px; border-radius: 14px; overflow: hidden; background: rgba(0, 0, 0, 0.3); }
-.shotStage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity 0.9s ease, transform 6s linear; }
-.shotStage img.on { opacity: 1; transform: scale(1); }
-.shotCap { position: absolute; left: 0; right: 0; bottom: 0; padding: 24px 12px 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12.5px; font-weight: 500; color: #fff;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.6)); }
-.shotCap span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); }
-.shotCap i { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.3); flex: none; }
-.shotCap i svg { width: 12px; height: 12px; }
-.shotDots { display: flex; gap: 5px; justify-content: center; }
-.shotDots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: width 0.3s, background 0.3s; }
-.shotDots i.on { width: 16px; border-radius: 3px; background: var(--accent); }
+/* ---------- dribbble marquee ---------- */
+.shotMarquee { position: relative; flex: 1 1 auto; min-height: 118px; border-radius: 10px; overflow: hidden; background: rgba(0, 0, 0, 0.2);
+  -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.shotTrack { position: absolute; top: 0; bottom: 0; left: 0; display: flex; width: max-content; animation: shot-slide 45s linear infinite; }
+.shotMarquee:hover .shotTrack { animation-play-state: paused; }
+.shotTrack a { display: block; height: 100%; aspect-ratio: 4 / 3; margin-right: 8px; border-radius: 8px; overflow: hidden; background: rgba(0, 0, 0, 0.3); transition: transform 0.2s; }
+.shotTrack a:hover { transform: scale(1.04); }
+.shotTrack img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@keyframes shot-slide { to { transform: translateX(-50%); } }
 
 /* ---------- calendar ---------- */
 .calNav { display: flex; align-items: center; justify-content: space-between; }

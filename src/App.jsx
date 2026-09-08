@@ -412,28 +412,20 @@ function QuoteCard() {
   );
 }
 
-// ---------- Dribbble ----------
+// ---------- Dribbble: marquee of popular web designs ----------
 function DribbbleCard() {
   const [shots, setShots] = useState(DRIBBBLE_SEED);
-  const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
   useEffect(() => { api("/api/dribbble").then((list) => { if (Array.isArray(list) && list.length >= 4) setShots(list); }).catch(() => {}); }, []);
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => setI((n) => (n + 1) % shots.length), 5000);
-    return () => clearInterval(id);
-  }, [paused, shots.length]);
-  const shot = shots[i];
   return (
     <section id="tile-dribbble" className="card">
       <div className="cardHead"><span className="iconBox">{Logo.dribbble}</span><h2>Dribbble</h2>
         <a className="linkBtn" href="https://dribbble.com/shots/popular/web-design" target="_blank" rel="noopener noreferrer">View more <Icon d={I.arrow} /></a></div>
-      <a className="shotStage" href={shot.url} target="_blank" rel="noopener noreferrer" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} title={shot.title}>
-        {shots.map((s, n) => <img key={s.url} src={s.image} alt="" loading={Math.abs(n - i) <= 1 ? "eager" : "lazy"} className={n === i ? "on" : ""} />)}
-        <span className="shotCap"><span>{shot.title}</span><i><Icon d={I.right} /></i></span>
-      </a>
-      <div className="shotDots" aria-hidden="true">
-        {shots.slice(0, 5).map((s, n) => <i key={s.url} className={n === i % 5 ? "on" : ""} onClick={() => setI(n)} />)}
+      <div className="shotMarquee">
+        <div className="shotTrack">
+          {[0, 1].map((copy) => shots.map((s) => (
+            <a key={s.url + copy} href={s.url} target="_blank" rel="noopener noreferrer" title={s.title}><img src={s.image} alt={s.title} loading="lazy" /></a>
+          )))}
+        </div>
       </div>
     </section>
   );
