@@ -373,6 +373,45 @@ function RemindersCard({ reminders, setReminders, outlook, water }) {
   );
 }
 
+// ---------- Quote of the day (rotates daily, no network) ----------
+const QUOTES = [
+  ["The secret of getting ahead is getting started.", "Mark Twain"],
+  ["Simplicity is the ultimate sophistication.", "Leonardo da Vinci"],
+  ["Well done is better than well said.", "Benjamin Franklin"],
+  ["Focus on being productive instead of busy.", "Tim Ferriss"],
+  ["Design is not just what it looks like. Design is how it works.", "Steve Jobs"],
+  ["What you do today can improve all your tomorrows.", "Ralph Marston"],
+  ["Small daily improvements are the key to staggering long-term results.", "Robin Sharma"],
+  ["Make each day your masterpiece.", "John Wooden"],
+  ["Action is the foundational key to all success.", "Pablo Picasso"],
+  ["Done is better than perfect.", "Sheryl Sandberg"],
+  ["Creativity is intelligence having fun.", "Albert Einstein"],
+  ["The best way to predict the future is to create it.", "Peter Drucker"],
+  ["Quality is not an act, it is a habit.", "Aristotle"],
+  ["Either you run the day or the day runs you.", "Jim Rohn"],
+  ["Great things are done by a series of small things brought together.", "Vincent van Gogh"],
+  ["Stay hungry, stay foolish.", "Steve Jobs"],
+  ["It always seems impossible until it is done.", "Nelson Mandela"],
+  ["Do what you can, with what you have, where you are.", "Theodore Roosevelt"],
+  ["Discipline is choosing between what you want now and what you want most.", "Abraham Lincoln"],
+  ["Every great design begins with an even better story.", "Lorinda Mamo"],
+  ["Start where you are. Use what you have. Do what you can.", "Arthur Ashe"],
+  ["A goal without a plan is just a wish.", "Antoine de Saint-Exupery"],
+  ["Energy and persistence conquer all things.", "Benjamin Franklin"],
+  ["Whether you think you can or you think you can't, you're right.", "Henry Ford"],
+];
+function QuoteCard() {
+  const d = new Date(); const day = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5);
+  const [text, author] = QUOTES[day % QUOTES.length];
+  return (
+    <section id="tile-quote" className="card">
+      <div className="cardHead"><span className="iconBox"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M7.5 6C5 6 3 8 3 10.5V18h7v-7H6.5c0-1.4 1-2.5 2.5-2.5V6H7.5zm10 0C15 6 13 8 13 10.5V18h7v-7h-3.5c0-1.4 1-2.5 2.5-2.5V6h-1.5z" /></svg></span><h2>Quote of the day</h2></div>
+      <p className="quote">"{text}"</p>
+      <p className="quoteBy">{author}</p>
+    </section>
+  );
+}
+
 // ---------- Dribbble ----------
 function DribbbleCard() {
   const [shots, setShots] = useState(DRIBBBLE_SEED);
@@ -490,7 +529,7 @@ function parseYouTube(s) {
   return m ? m[1] : null;
 }
 function YouTubeCard() {
-  const DEFAULT_VIDEO = { id: "Ut5QB8G7Su0", title: "Latest News Today", sub: "Tap to play the latest headlines" };
+  const DEFAULT_VIDEO = { id: "Ut5QB8G7Su0", title: "Latest News Today", sub: "" };
   const [current, setCurrent] = useState(DEFAULT_VIDEO);
   const [playing, setPlaying] = useState(false);
   const [url, setUrl] = useState("");
@@ -511,7 +550,7 @@ function YouTubeCard() {
         </div>
         <div className="ytSide">
           <div className="ytMeta">
-            <div className="txt"><b>{current.title}</b><span>{current.sub}</span></div>
+            <div className="txt"><b>{current.title}</b>{current.sub && <span>{current.sub}</span>}</div>
             {playing && <button className="pill" onClick={() => { setPlaying(false); setCurrent(DEFAULT_VIDEO); }}>stop</button>}
           </div>
           <form className="ytLink" onSubmit={go}>
@@ -854,7 +893,10 @@ export default function App() {
               <RemindersCard reminders={reminders} setReminders={setReminders} outlook={outlook} water={water} />
               <WeatherCard w={weather} />
               <DayPlanCard announce={announce} />
-              <CalendarCard outlook={outlook} />
+              <div className="stackC">
+                <QuoteCard />
+                <CalendarCard outlook={outlook} />
+              </div>
               <YouTubeCard />
               <div className="stackM">
                 <MarketsCard stocks={stocks} />
