@@ -14,6 +14,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "$up = $false; try { $up 
 rem 2. Wait (up to 40 s) for the web server.
 powershell -NoProfile -ExecutionPolicy Bypass -Command "for ($i = 0; $i -lt 40; $i++) { try { if ((Invoke-WebRequest -UseBasicParsing -TimeoutSec 2 http://localhost:5210).StatusCode -eq 200) { break } } catch {}; Start-Sleep -Seconds 1 }"
 
-rem 3. Open the dashboard full screen. F11 leaves full screen, Alt+F4 closes it.
-start "" "%CHROME%" --app=http://localhost:5210 --start-fullscreen --autoplay-policy=no-user-gesture-required --user-data-dir="%PROFILE%" --no-first-run --no-default-browser-check
+rem 3. Open the dashboard full screen on the second monitor when there is one (else the primary).
+rem    F11 leaves full screen, Alt+F4 closes it.
+powershell -NoProfile -ExecutionPolicy Bypass -Command "Add-Type -AssemblyName System.Windows.Forms; $scr = [System.Windows.Forms.Screen]::AllScreens | Where-Object { -not $_.Primary } | Select-Object -First 1; if (-not $scr) { $scr = [System.Windows.Forms.Screen]::PrimaryScreen }; $b = $scr.Bounds; $args = @('--app=http://localhost:5210', '--start-fullscreen', '--autoplay-policy=no-user-gesture-required', ('--user-data-dir=' + $env:PROFILE), '--no-first-run', '--no-default-browser-check', ('--window-position=' + $b.X + ',' + $b.Y), ('--window-size=' + $b.Width + ',' + $b.Height)); Start-Process -FilePath $env:CHROME -ArgumentList $args"
 endlocal
