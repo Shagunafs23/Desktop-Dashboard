@@ -448,6 +448,21 @@ function GitHubLinkCard() {
   );
 }
 
+// ---------- Magnific: quick link ----------
+const MAGNIFIC = "https://www.magnific.com/";
+function MagnificCard() {
+  const logo = <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><defs><linearGradient id="mgG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ff7ac6" /><stop offset="1" stopColor="#7c5cff" /></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="6" fill="url(#mgG)" /><path d="M7 16.5V7.5l5 5 5-5v9" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+  return (
+    <section id="tile-magnific" className="card">
+      <div className="cardHead"><span className="iconBox">{logo}</span><h2>Magnific</h2>
+        <a className="linkBtn" href={MAGNIFIC} target="_blank" rel="noopener noreferrer">Open <Icon d={I.arrow} /></a></div>
+      <a className="mgStage" href={MAGNIFIC} target="_blank" rel="noopener noreferrer">
+        <b>Magnific</b><span>AI upscaler and enhancer</span>
+      </a>
+    </section>
+  );
+}
+
 // ---------- Instagram: profile embed ----------
 const INSTA = { handle: "webdesignssphere", url: "https://www.instagram.com/webdesignssphere/" };
 function InstagramCard() {
@@ -832,6 +847,7 @@ export default function App() {
               <div className="miniRow">
                 <DribbbleCard />
                 <InstagramCard />
+                <MagnificCard />
               </div>
             </div>
             <div className="colRight">

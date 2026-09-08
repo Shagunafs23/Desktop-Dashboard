@@ -132,12 +132,18 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .colLeft { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .colLeft #tile-chat { flex: 1; }
 /* mini Dribbble + Instagram pair under Jarvis */
-.miniRow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: none; }
-.miniRow .card { padding: 12px 13px; gap: 8px; }
-.miniRow .cardHead h2 { font-size: 13.5px; }
+.miniRow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; flex: none; }
+.mgStage { display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; height: 118px; padding: 10px; border-radius: 10px; color: #fff;
+  background: radial-gradient(120% 90% at 20% 10%, rgba(255, 122, 198, 0.9), transparent 55%), radial-gradient(100% 90% at 90% 90%, rgba(124, 92, 255, 0.95), transparent 60%), #1b1440;
+  transition: transform 0.2s; }
+.mgStage:hover { transform: translateY(-2px); }
+.mgStage b { font-size: 15px; font-weight: 700; letter-spacing: -0.2px; }
+.mgStage span { font-size: 10.5px; color: rgba(255, 255, 255, 0.8); }
+.miniRow .card { padding: 10px 11px; gap: 8px; }
+.miniRow .cardHead h2 { font-size: 12.5px; }
 .miniRow .iconBox { width: 28px; height: 28px; border-radius: 9px; }
 .miniRow .iconBox svg { width: 16px; height: 16px; }
-.miniRow .linkBtn { font-size: 11.5px; }
+.miniRow .linkBtn { font-size: 11px; }
 .miniRow .linkBtn svg { width: 12px; height: 12px; }
 .miniRow .shotStage { flex: none; min-height: 0; height: 118px; border-radius: 10px; }
 .miniRow .shotCap { padding: 16px 8px 6px; font-size: 11px; }
