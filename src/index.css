@@ -48,16 +48,16 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 
 /* ---------- shell: rail + content ---------- */
 .shell { position: relative; z-index: 1; display: grid; grid-template-columns: 76px 1fr; min-height: 100vh; }
-.content { display: flex; flex-direction: column; gap: 16px; padding: 18px 26px 18px 22px; min-width: 0; }
+.content { display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 18px 26px 18px 22px; min-width: 0; min-height: 100vh; }
 
 /* ---------- rail (dock) ---------- */
 .rail { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 22px 0 16px; z-index: 50;
   background: rgba(20, 24, 36, 0.32); backdrop-filter: blur(22px) saturate(150%); -webkit-backdrop-filter: blur(22px) saturate(150%);
   border-right: 1px solid rgba(255, 255, 255, 0.16); position: sticky; top: 0; height: 100vh; }
-.railLogo { width: 46px; height: 46px; border-radius: 50%; margin-bottom: 18px; display: grid; place-items: center; overflow: hidden; flex: none;
+.railLogo { width: 46px; height: 46px; border-radius: 50%; margin-bottom: 0; display: grid; place-items: center; overflow: hidden; flex: none;
   background: radial-gradient(circle at 40% 35%, #1b2d55, #070c1c 70%); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 0 18px rgba(59, 130, 246, 0.25); }
 .railLogo canvas { width: 100% !important; height: 100% !important; }
-.dock { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 6px 0; }
+.dock { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 6px 0; margin: auto 0; }
 .dock .dockBtn { width: 50px; height: 50px; border-radius: 15px; display: grid; place-items: center; color: rgba(255, 255, 255, 0.92); position: relative; flex: none;
   transform-origin: left center; will-change: transform;
   transition: transform 0.14s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s, box-shadow 0.2s;
@@ -69,7 +69,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .dock .dockBtn svg { width: 26px; height: 26px; }
 .dock .dockBtn > svg[viewBox="0 0 28 28"] { width: 30px; height: 30px; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35)); }
 @keyframes dock-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-.railFoot { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.railFoot { margin-top: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
 .railFoot .mini { width: 34px; height: 34px; border-radius: 50%; overflow: hidden; background: radial-gradient(circle at 40% 35%, #1b2d55, #070c1c 70%); box-shadow: 0 0 14px rgba(59, 130, 246, 0.35); }
 .railFoot .mini canvas { width: 100% !important; height: 100% !important; }
 .railFoot b { font-size: 9.5px; letter-spacing: 0.4px; font-weight: 600; white-space: nowrap; }
