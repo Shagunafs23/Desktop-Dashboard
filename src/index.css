@@ -165,7 +165,10 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .iconBtn:hover { background: var(--accent); }
 .stackR { grid-column: 1 / 6; grid-row: 1 / 3; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .stackR #tile-list { flex: none; }
-#tile-cal { flex: 1 1 auto; gap: 6px; padding: 14px 16px; } #tile-play { grid-area: y; }
+#tile-cal { flex: 1 1 auto; gap: 10px; padding: 14px 16px; justify-content: center; } #tile-play { grid-area: y; }
+#tile-cal .calGrid { flex: 1 1 auto; align-content: space-evenly; gap: 2px; }
+#tile-cal .day { height: 26px; width: 28px; font-size: 12.5px; }
+#tile-cal .dow { font-size: 11.5px; }
 #tile-quote { flex: none; gap: 5px; padding: 11px 14px; justify-content: center; }
 #tile-quote .cardHead h2 { font-size: 13px; }
 #tile-quote .iconBox { width: 26px; height: 26px; border-radius: 8px; }
