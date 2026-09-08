@@ -48,7 +48,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 
 /* ---------- shell: rail + content ---------- */
 .shell { position: relative; z-index: 1; display: grid; grid-template-columns: 76px 1fr; min-height: 100vh; }
-.content { display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 18px 26px 78px 22px; min-width: 0; min-height: 100vh; }
+.content { display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 18px 26px 118px 22px; min-width: 0; min-height: 100vh; }
 
 /* ---------- rail (dock) ---------- */
 .rail { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 22px 0 16px; z-index: 50;
@@ -129,7 +129,7 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 .avatarBtn { font-weight: 600; font-size: 15px; }
 
 /* ---------- grid: left column + right grid ---------- */
-.grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 8fr) minmax(0, 16fr); align-items: stretch; }
+.grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 9fr) minmax(0, 15fr); align-items: stretch; }
 .colLeft { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .colLeft #tile-chat { flex: none; }
 /* mini Dribbble + Instagram pair under Jarvis */
