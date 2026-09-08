@@ -785,12 +785,12 @@ function Ticker({ weather, gold, stocks }) {
   return <footer className="ticker" aria-label="live bar"><div className="tItems">{track}</div></footer>;
 }
 
-// Video backdrop (public/house.mp4). Falls back to the gradient scene if the file is missing.
+// Video backdrop (public/bg.mp4). Falls back to the gradient scene if the file is missing.
 function Backdrop() {
   const [ok, setOk] = useState(true);
   return (
     <div className="backdrop" aria-hidden="true">
-      {ok && <LoopVideo src="/house.mp4" onFail={() => setOk(false)} />}
+      {ok && <LoopVideo src="/bg.mp4" onFail={() => setOk(false)} />}
       <div className="tint" />
     </div>
   );
