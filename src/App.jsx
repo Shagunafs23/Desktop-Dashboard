@@ -4,6 +4,13 @@ import { api, speak, notify, askNotifyPermission, useStored, fmtTime, greeting, 
 import { DRIBBBLE_SEED } from "./dribbbleSeed";
 
 const MODELS = ["sonnet", "opus", "haiku"];
+// Locked desktop screen (Chrome kiosk) is launched with ?kiosk=1. There, outside links open in the
+// normal browser via the server, so the dashboard itself never navigates away.
+const KIOSK = new URLSearchParams(window.location.search).has("kiosk");
+function openExternal(url) {
+  if (KIOSK) api("/api/open-url", { url }).catch(() => window.open(url, "_blank", "noopener"));
+  else window.open(url, "_blank", "noopener");
+}
 
 // ---------- icons ----------
 const Icon = ({ d, size = 18, sw = 1.8, className = "" }) => (
@@ -861,7 +868,7 @@ export default function App() {
   const [active, setActive] = useState("chat");
   const [busyApp, setBusyApp] = useState("");
   async function launch(d) {
-    if (d.url) { window.open(d.url, "_blank", "noopener"); return; }
+    if (d.url) { openExternal(d.url); return; }
     setBusyApp(d.k);
     try { await api("/api/open", { app: d.k }); } catch (e) { announce("Could not open " + d.label, e.message); }
     setTimeout(() => setBusyApp(""), 1200);
@@ -869,6 +876,18 @@ export default function App() {
   const jump = (k) => { setActive(k); document.getElementById("tile-" + k)?.scrollIntoView({ behavior: "smooth", block: "nearest" }); };
   const [dictation, setDictation] = useState(null);
   const onDictation = useCallback((text) => setDictation({ text, id: Date.now() }), []);
+
+  // Kiosk: intercept clicks on outside links so they open in the normal browser.
+  useEffect(() => {
+    if (!KIOSK) return;
+    const h = (e) => {
+      const el = e.target.closest("a[href]"); if (!el) return;
+      const href = el.href;
+      if (/^https?:/i.test(href) && !href.startsWith(window.location.origin)) { e.preventDefault(); openExternal(href); }
+    };
+    document.addEventListener("click", h, true);
+    return () => document.removeEventListener("click", h, true);
+  }, []);
 
   // Refresh button: re-fetch every source and ripple a soft wave across the cards.
   const [waving, setWaving] = useState(false);

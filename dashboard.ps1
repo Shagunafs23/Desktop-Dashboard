@@ -17,7 +17,7 @@ function Launch {
   $scr = [System.Windows.Forms.Screen]::AllScreens | Where-Object { -not $_.Primary } | Select-Object -First 1
   if (-not $scr) { $scr = [System.Windows.Forms.Screen]::PrimaryScreen }
   $b = $scr.Bounds
-  $args = @("--kiosk", "http://localhost:5210", "--autoplay-policy=no-user-gesture-required", "--user-data-dir=$profile",
+  $args = @("--kiosk", "http://localhost:5210/?kiosk=1", "--autoplay-policy=no-user-gesture-required", "--user-data-dir=$profile",
             "--no-first-run", "--no-default-browser-check", "--disable-session-crashed-bubble",
             "--window-position=$($b.X),$($b.Y)", "--window-size=$($b.Width),$($b.Height)")
   Start-Process -FilePath $chrome -ArgumentList $args

@@ -137,6 +137,16 @@ app.post("/api/open", (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
+// ---------- Open a web link in the default browser (the kiosk screen must never navigate away) ----------
+app.post("/api/open-url", (req, res) => {
+  const url = String(req.body?.url || "").trim();
+  if (!/^https?:\/\/[^\s"'<>]+$/i.test(url)) return res.status(400).json({ error: "http(s) url required" });
+  try {
+    spawn("rundll32.exe", ["url.dll,FileProtocolHandler", url], { detached: true, stdio: "ignore", windowsHide: true }).unref();
+    res.json({ ok: true });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 // ---------- Reminders (shared with the /jarvis skill) ----------
 const LINE = /^- (\[x\] )?(\d{4}-\d{2}-\d{2} \d{2}:\d{2}) \| (.*)$/;
 const remindersRaw = () => readFile(REMINDERS, "utf8").catch(() => "");
