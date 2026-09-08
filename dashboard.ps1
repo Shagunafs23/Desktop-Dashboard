@@ -1,6 +1,7 @@
 # Shagun's AI desktop screen: keeps the dashboard locked full screen on the second monitor.
 # Started by start-dashboard.cmd (also from the Startup folder). Ended by stop-dashboard.cmd.
-param([string]$Root = $PSScriptRoot)
+param([string]$RootArg)
+$Root = $PSScriptRoot  # always the folder this script lives in
 
 $chrome = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 if (-not (Test-Path $chrome)) { $chrome = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" }
@@ -24,7 +25,7 @@ function Launch {
 }
 
 # 1. Servers.
-if (-not (Up)) { Start-Process -FilePath "cmd.exe" -ArgumentList "/c npm start" -WorkingDirectory $Root -WindowStyle Minimized }
+if (-not (Up)) { Start-Process -FilePath "cmd.exe" -ArgumentList "/c npm start" -WorkingDirectory $Root -WindowStyle Minimized; Start-Sleep -Seconds 3 }
 for ($i = 0; $i -lt 60 -and -not (Up); $i++) { Start-Sleep -Seconds 1 }
 
 # 2. Window, kept alive until the stop flag appears.
