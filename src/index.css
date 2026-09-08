@@ -163,10 +163,10 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 #tile-list { gap: 10px; }
 .iconBtn { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: rgba(255, 255, 255, 0.10); flex: none; transition: background 0.2s; }
 .iconBtn:hover { background: var(--accent); }
-.stackR { grid-area: r; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.stackR { grid-column: 1 / 6; grid-row: 1 / 3; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .stackR #tile-list { flex: none; }
-#tile-cal { grid-area: c; gap: 6px; padding: 14px 16px; } #tile-play { grid-area: y; }
-#tile-quote { flex: 1 1 auto; gap: 5px; padding: 11px 14px; justify-content: center; }
+#tile-cal { flex: 1 1 auto; gap: 6px; padding: 14px 16px; } #tile-play { grid-area: y; }
+#tile-quote { flex: none; gap: 5px; padding: 11px 14px; justify-content: center; }
 #tile-quote .cardHead h2 { font-size: 13px; }
 #tile-quote .iconBox { width: 26px; height: 26px; border-radius: 8px; }
 #tile-quote .iconBox svg { width: 15px; height: 15px; }
@@ -433,8 +433,8 @@ input::placeholder { color: rgba(255, 255, 255, 0.55); }
 /* ---------- responsive ---------- */
 @media (max-width: 1400px) {
   .grid { grid-template-columns: 1fr; }
-  .colRight { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; grid-template-areas: "r w" "p c" "y m"; }
-  .stackR { grid-area: r; }
+  .colRight { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; grid-template-areas: "r w" "r p" "y m"; }
+  .stackR { grid-area: r; grid-column: auto; grid-row: auto; }
   .stackM { grid-area: m; }
   .listen { min-width: 0; }
 }
