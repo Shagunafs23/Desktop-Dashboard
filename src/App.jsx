@@ -890,13 +890,13 @@ export default function App() {
               </div>
             </div>
             <div className="colRight">
-              <RemindersCard reminders={reminders} setReminders={setReminders} outlook={outlook} water={water} />
+              <div className="stackR">
+                <RemindersCard reminders={reminders} setReminders={setReminders} outlook={outlook} water={water} />
+                <QuoteCard />
+              </div>
               <WeatherCard w={weather} />
               <DayPlanCard announce={announce} />
-              <div className="stackC">
-                <QuoteCard />
-                <CalendarCard outlook={outlook} />
-              </div>
+              <CalendarCard outlook={outlook} />
               <YouTubeCard />
               <div className="stackM">
                 <MarketsCard stocks={stocks} />
